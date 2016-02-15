@@ -55,14 +55,14 @@ struct Mat {
 };
 
 int main (void) {
+	
 	ll n, k;
-
 	cin >> n >> k >> M;
 	
 	Mat F (2, 2);
 	F.v[0][0] = k-1;
 	F.v[0][1] = k-1;
-	F.v[1][0] = k-1;
+	F.v[1][0] = 1;
 	F.v[1][1] = 0;
 	
 	Mat S (2, 1);
@@ -70,14 +70,9 @@ int main (void) {
 	S.v[0][0] = (k*(k-1))%M;
 
 
-	if (n > 2) {
-		Mat r = F^(n-2);
-		Mat ans = r * S;
-		cout << ans.v[0][0] << endl;
-	} else {
-		if (n == 0) cout << (k-1)%M << endl;
-		else cout << ((k-1)*k)%M << endl;
-	}
+	Mat r = F^(n-2);
+	Mat ans = r * S;
+	cout << ans.v[0][0] << endl;
 
 	return 0;
 }
